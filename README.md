@@ -2,8 +2,11 @@
 
 ## Steps:
 
- 1. Deploy the stack using awscli and Cloudformation
+ 1. Deploy the stack using awscli and Cloudformation - Done
+ 2. Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
 
+## Environments:
+ - Use environment variable name for db_name
 
 ## Solution 1:  AWS CLI + CloudFormation + API Gateway + DynamoDB
 
@@ -22,3 +25,8 @@
        --capabilities CAPABILITY_IAM \
        --parameters \
            ParameterKey=MyName,ParameterValue='Harshad_Wankhede'`
+           
+### Testing Post Request
+ - `curl -i --header "Content-Type: application/json" \
+        --request POST --data '{"team_name":"contino","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
+        'https://<api_id>>.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`

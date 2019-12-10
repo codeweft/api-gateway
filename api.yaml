@@ -32,7 +32,7 @@ Resources:
 
           def dynamo_itemcreate(team_name, team_country, team_desc, team_rating):
               dynamodb = boto3.client('dynamodb')
-              db_name = "Challenge_DB"
+              db_name = "Challenge_Harshad_Wankhede"
               dynamodb.put_item(TableName=db_name, Item={'country':{'S':team_country}, 'team':{'S':team_name}, 'desc':{'S':team_desc}, 'rating':{'S':team_rating}})
 
           def lambda_handler(event, context):
@@ -69,6 +69,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - lambda:*
+                  - dynamodb:PutItem
                 Resource: '*'
 
 
