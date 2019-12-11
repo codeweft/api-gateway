@@ -1,15 +1,16 @@
 ---
   - name: Deploy API - API Gateway, Application Lambda
     cloudformation:
-      stack_name: "{{application}}-{{env}}-api"
+      stack_name: "{{project}}-{{env}}-api"
       state: present
       region: "{{aws_region}}"
       disable_rollback: true
       template: "cloudformation/api.yml"
       stack_policy: "cloudformation/allow_update_policy.json"
       template_parameters:
-        AppplicationName: "{{application_name}}"
+        ApplicationName: "{{application_name}}"
+        DatabaseName: "{{database_name}}"
       tags:
         project: "{{project}}"
-        application: "{{application}}"
+        application: "{{project}}-{{env}}-api"
         environment: "{{env}}"

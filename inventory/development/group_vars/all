@@ -3,4 +3,3 @@ env: dev
 aws_region: ap-southeast-2
 project: contino-assignment
 account_id: 426259096690
-application: contino

@@ -1,13 +1,15 @@
-[api]
-api
-
-[api:vars]
-deploy_version=1
-application_name=Api_Gateway
-
 [db]
 db
 
 [db:vars]
 deploy_version=1
-database_name=DynamoDB
+database_name=contino
+email_address=harshad2019@wankhede.org
+
+[api]
+api
+
+[api:vars]
+deploy_version=1
+application_name=contino
+database_name=contino

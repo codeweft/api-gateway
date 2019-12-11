@@ -6,6 +6,7 @@
  2. Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
  3. Make application modular and parameterized using Ansible - Done
  4. Send a message to a SNS Topic whenever a new item is added - Done
+ 5. Improve security - IAM Permissions, Environment Variables, Server Side Encryption..  - In progress
 
 ## Environments:
  - Use environment variable name for db_name
@@ -57,8 +58,8 @@
 
 ### Testing Post Request
  - `curl -i --header "Content-Type: application/json" \
-        --request POST --data '{"team_name":"contino-3","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
-        'https://ayl16dpxnk.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
+        --request POST --data '{"team_name":"contino-4","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
+        'https://7g55a0f9w7.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
   
 ### Deploying Using CI(Shippable?) 
  - TODO

@@ -4,13 +4,16 @@ Parameters:
   DatabaseName:
     Type: String
     Description: Name of the Database
+  EmailAddress:
+    Type: String
+    Description: Name of the Database
 
 Resources:
   SNSTopicEmail:
     Type: "AWS::SNS::Topic"
     Properties:
       Subscription:
-        - Endpoint: "harshad2019@wankhede.org" # PUT YOUR EMAIL ADDRESS HERE
+        - Endpoint: !Ref EmailAddress
           Protocol: "email"
   LambdaRole:
     Type: AWS::IAM::Role
@@ -42,11 +45,12 @@ Resources:
                   - dynamodb:GetRecords
                   - dynamodb:GetShardIterator
                   - dynamodb:ListStreams
-                Resource: "*"
+                Resource:
+                  Fn::GetAtt: [ DynamoDBTable , StreamArn ]
               - Effect: Allow
                 Action:
                   - SNS:Publish
-                Resource: "*"
+                Resource: !Ref SNSTopicEmail
   SNSPublishFunction:
     Type: AWS::Lambda::Function
     Properties:

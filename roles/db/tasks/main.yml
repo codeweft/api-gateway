@@ -1,9 +1,9 @@
 ---
-  - name: Package and upload lambda to s3
-    command: ./package.sh
+#  - name: Package and upload lambda to s3
+#    command: ./package.sh
   - name: Deploy DB - DynamoDB, Lambda, SNS
     cloudformation:
-      stack_name: "{{application}}-{{env}}-db"
+      stack_name: "{{project}}-{{env}}-db"
       state: present
       region: "{{aws_region}}"
       disable_rollback: true
@@ -11,7 +11,8 @@
       stack_policy: "cloudformation/allow_update_policy.json"
       template_parameters:
         DatabaseName: "{{database_name}}"
+        EmailAddress: "{{email_address}}"
       tags:
         project: "{{project}}"
-        application: "{{application}}"
+        application: "{{project}}-{{env}}-db"
         environment: "{{env}}"
