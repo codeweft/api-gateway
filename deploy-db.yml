@@ -1,6 +1,6 @@
 ---
-- hosts: deploy_app
+- hosts: db
   connection: local
   gather_facts: False
   roles:
-    - deploy
+    - db

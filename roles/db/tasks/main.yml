@@ -1,14 +1,16 @@
 ---
-  - name: Deploy API Gateway Challenge
+  - name: Package and upload lambda to s3
+    command: ./package.sh
+  - name: Deploy DB - DynamoDB, Lambda, SNS
     cloudformation:
-      stack_name: "{{application}}-{{env}}-vpc"
+      stack_name: "{{application}}-{{env}}-db"
       state: present
       region: "{{aws_region}}"
       disable_rollback: true
-      template: "cloudformation/api-challenge.yml"
+      template: "cloudformation/db-lambda.yml"
       stack_policy: "cloudformation/allow_update_policy.json"
       template_parameters:
-        AppplicationName: "{{application_name}}"
+        DatabaseName: "{{database_name}}"
       tags:
         project: "{{project}}"
         application: "{{application}}"

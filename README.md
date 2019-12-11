@@ -5,6 +5,7 @@
  1. Deploy the stack using awscli and Cloudformation - Done
  2. Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
  3. Make application modular and parameterized using Ansible - Done
+ 4. Send a message to a SNS Topic whenever a new item is added - In Progress
 
 ## Environments:
  - Use environment variable name for db_name
@@ -35,11 +36,7 @@
                 --region ap-southeast-2 \
                 --stack-name api-gateway`
            
-### Testing Post Request
- - `curl -i --header "Content-Type: application/json" \
-        --request POST --data '{"team_name":"contino","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
-        'https://<api_id>>.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
-        
+
 ## Solution 2: Using Ansible + CloudFormation + API Gateway + DynamoDB
 
 ### Installing Dependencies for using Python Virtual Env and Ansible
@@ -51,8 +48,17 @@
  - If needed update Ansible inventory /inventory/development/group_vars/all
 
 ### Deploying Application on AWS
+ - $ ``aws cloudformation package --template-file ./cloudformation/db.yml --s3-bucket coding-challenge-builds --s3-prefix lambda --output-template-file ./cloudformation/db-packaged.yml``
+ 
+ - Deploy DB using Ansible: 
+   $ ``ansible-playbook deploy-db.yml -i inventory/development/ -e "ansible_python_interpreter=`which python3`"``
  - Deploy Application using Ansible: 
-   $ ``ansible-playbook deploy.yml -i inventory/development/ -e "ansible_python_interpreter=`which python3`"``
+   $ ``ansible-playbook deploy-api.yml -i inventory/development/ -e "ansible_python_interpreter=`which python3`"``
+
+### Testing Post Request
+ - `curl -i --header "Content-Type: application/json" \
+        --request POST --data '{"team_name":"contino","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
+        'https://<api_id>>.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
   
 ### Deploying Using CI(Shippable?) 
  - TODO

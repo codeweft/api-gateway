@@ -8,20 +8,6 @@ Parameters:
     Description: Name of the AppplicationName
 
 Resources:
-  DynamoTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub Challenge_${AppplicationName}
-      AttributeDefinitions:
-        - AttributeName: team
-          AttributeType: S
-      KeySchema:
-        - AttributeName: team
-          KeyType: HASH
-      BillingMode: PAY_PER_REQUEST
-      SSESpecification:
-        SSEEnabled: true
-
   LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:

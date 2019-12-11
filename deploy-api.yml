@@ -1,0 +1,6 @@
+---
+- hosts: api
+  connection: local
+  gather_facts: False
+  roles:
+    - api
