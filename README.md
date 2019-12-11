@@ -5,7 +5,7 @@
  1. Deploy the stack using awscli and Cloudformation - Done
  2. Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
  3. Make application modular and parameterized using Ansible - Done
- 4. Send a message to a SNS Topic whenever a new item is added - In Progress
+ 4. Send a message to a SNS Topic whenever a new item is added - Done
 
 ## Environments:
  - Use environment variable name for db_name
@@ -57,8 +57,8 @@
 
 ### Testing Post Request
  - `curl -i --header "Content-Type: application/json" \
-        --request POST --data '{"team_name":"contino","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
-        'https://<api_id>>.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
+        --request POST --data '{"team_name":"contino-3","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
+        'https://ayl16dpxnk.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
   
 ### Deploying Using CI(Shippable?) 
  - TODO

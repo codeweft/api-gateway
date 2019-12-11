@@ -7,7 +7,7 @@
       state: present
       region: "{{aws_region}}"
       disable_rollback: true
-      template: "cloudformation/db-lambda.yml"
+      template: "cloudformation/dynamodb.yml"
       stack_policy: "cloudformation/allow_update_policy.json"
       template_parameters:
         DatabaseName: "{{database_name}}"
