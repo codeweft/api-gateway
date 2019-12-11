@@ -3,15 +3,15 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Tech Challenge #1 - 20190715
 
 Parameters:
-  MyName:
+  AppplicationName:
     Type: String
-    Description: Name of the Candidate
+    Description: Name of the AppplicationName
 
 Resources:
   DynamoTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Sub Challenge_${MyName}
+      TableName: !Sub Challenge_${AppplicationName}
       AttributeDefinitions:
         - AttributeName: team
           AttributeType: S
@@ -97,7 +97,7 @@ Resources:
   ApiRestApi:
     Type: 'AWS::ApiGateway::RestApi'
     Properties:
-      Name: !Sub RestTechChallenge1_${MyName}
+      Name: !Sub RestTechChallenge1_${AppplicationName}
       EndpointConfiguration:
         Types:
           - REGIONAL

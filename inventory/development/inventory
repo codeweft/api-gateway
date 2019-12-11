@@ -1,0 +1,6 @@
+[deploy]
+deploy_app
+
+[deploy:vars]
+deploy_version=1
+application_name=Api_Gateway
