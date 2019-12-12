@@ -63,12 +63,13 @@ Resources:
             event.Records.forEach((record) => {
                 console.log('Stream record: ', JSON.stringify(record, null, 2));
 
-                if (record.eventName == 'INSERT') {
-                    var source = JSON.stringify(record.dynamodb.eventSourceARN);
+                var eventName = JSON.stringify(record.eventName);
+                if ( ['INSERT','MODIFY'].includes(record.eventName) ) {
+                    var source = JSON.stringify(record.eventSourceARN);
                     var time = JSON.stringify(record.dynamodb.ApproximateCreationDateTime);
                     var data = JSON.stringify(record.dynamodb.NewImage);
                     var params = {
-                        Subject: 'Message from SNS Topic',
+                        Subject:  eventName + ' Message from SNS Topic',
                         Message: 'Message from ' + source + ' at time ' + time + ' with data:\n\n ' + data,
                         TopicArn: snsTopic
                     };

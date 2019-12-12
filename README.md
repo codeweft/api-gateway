@@ -1,5 +1,18 @@
 # API Gateway Challenge from Contino
 
+# Problem Statement:
+
+ - Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
+ - Add any required resources to send a message to a SNS Topic whenever a new item is added to the DynamoDB Table. The message can be either table updated or the content of the new item added - Done
+ - Implement any type of authentication to the API Gateway.
+
+## Considerations:
+ - Share your code with us through your own git repository. Add user ContinoTest to private repo
+ - Consider security on all pieces of your work.
+ - Make sure that all resources required by your stack are included on the deployment process.
+ - Include a README with details on how to run your code. Add a section with recommended improvements for this stack.
+ - On the same README file, include a section with recommended improvements to be done on the stack/repo that you consider important.
+
 ## Steps:
 
  1. Deploy the stack using awscli and Cloudformation - Done
@@ -58,7 +71,7 @@
 
 ### Testing Post Request
  - `curl -i --header "Content-Type: application/json" \
-        --request POST --data '{"team_name":"contino-4","team_country":"au","team_desc":"team contino is the best","team_rating":"10"}' \
+        --request POST --data '{"team_name":"contino","team_country":"au4","team_desc":"team contino is the best","team_rating":"10"}' \
         'https://7g55a0f9w7.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
   
 ### Deploying Using CI(Shippable?) 
