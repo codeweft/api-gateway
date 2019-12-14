@@ -21,7 +21,7 @@ The Cloudformation stack mainly deploys the following AWS resources:
 
  - Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
  - Add any required resources to send a message to a SNS Topic whenever a new item is added to the DynamoDB Table. The message can be either table updated or the content of the new item added - Done
- - Implement any type of authentication to the API Gateway - TODO
+ - (Optional)Implement any type of authentication to the API Gateway - ToDo
 
 ## Considerations:
  - Share your code with us through your own git repository. Add user to private repo
@@ -45,7 +45,7 @@ The Cloudformation stack mainly deploys the following AWS resources:
  3. Make application modular and parameterized using Ansible - Done
  4. Send a message to a SNS Topic whenever a new item is added - Done
  5. Improve security - IAM Permissions, Environment Variables, Server Side Encryption, Documentation..  - In progress
- 6. Implement API Gateway Authentication - Cognito?
+ 6. Implement API Gateway Authentication - Cognito? - ToDo
 
 ## Implementation : Using Ansible + CloudFormation + API Gateway + DynamoDB + SNS
 
