@@ -9,6 +9,9 @@ Parameters:
   DatabaseName:
     Type: String
     Description: Name of the Appplication
+  StageName:
+    Type: String
+    Description: Name of the Stage
 
 Resources:
   LambdaFunction:
@@ -152,7 +155,7 @@ Resources:
     Type: 'AWS::ApiGateway::Deployment'
     Properties:
       RestApiId: !Ref ApiRestApi
-      StageName: v1
+      StageName: !Ref StageName
     DependsOn:
       - ApiMethod
       - ApiModel

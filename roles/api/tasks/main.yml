@@ -10,6 +10,7 @@
       template_parameters:
         ApplicationName: "{{application_name}}"
         DatabaseName: "{{database_name}}"
+        StageName: "{{stage_name}}"
       tags:
         project: "{{project}}"
         application: "{{project}}-{{env}}-api"

@@ -1,5 +1,5 @@
 ---
 env: dev
 aws_region: ap-southeast-2
-project: contino-assignment
+project: companyx-assignment
 account_id: 426259096690
