@@ -32,6 +32,7 @@ The Cloudformation stack mainly deploys the following AWS resources:
 
 ## Assumptions/Thinking Pattern:
  - External facing API
+ - AWS Managed KMS key is Default for DynamoDB for now. Need to consider Customer Managed Keys for Storing Data.
  - Table updated means new entry in the table
  - Content updated means existing entry updated in table
  - Stack policy is set to be permissive for now. Would need to consider locking down DB updates for production data
@@ -87,3 +88,4 @@ The Cloudformation stack mainly deploys the following AWS resources:
     - API Keys with usage quota limiting
     - Lambda Authorizer Functions
  - Blue Green Deployments with api safety: v1->v2->v3...
+ - Better Tagging of Resources
