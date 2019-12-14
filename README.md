@@ -1,5 +1,22 @@
 # API Gateway Challenge from CompanyX
 
+## Background
+A cloud engineer working for Company X created a Cloudformation template to deploy a serverless API
+service which will receive and store data about sports teams into a NoSQL database.
+
+After deploying the stack, although the AWS Cloudformation stack is successfully created, when the API
+receives a POST request the engineer is facing some issues and data is not being written to the table as
+expected.
+
+The Cloudformation stack mainly deploys the following AWS resources:
+
+|Service        |Description|
+|---------------|-----------|
+|API Gateway    |Handles the http traffic|
+|Role           |Role to be used by Lambda Function|
+|Lambda Function|Extract data from the http request and update the database|
+|DynamoDB Table |NoSQL Database|
+
 ## Problem Statement:
 
  - Make the necessary changes so data is successfully written to the DynamoDB Table once a POST request is received by the API Gateway - Done
