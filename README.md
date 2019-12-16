@@ -52,7 +52,7 @@ The Cloudformation stack mainly deploys the following AWS resources:
 
 ### Execution & Deployment: 
  * Install Docker CE: https://download.docker.com/
- * Update Ansible inventory at: `/inventory/development`
+ * Update Ansible inventory at: `inventory/development`
  * Set AWS Credentials: `source <creds-file>`
  * To Deploy Run: `./deploy.sh`
     
@@ -77,10 +77,6 @@ The Cloudformation stack mainly deploys the following AWS resources:
         --request POST --data '{"team_name":"companyx","team_country":"au","team_desc":"team companyx is the best","team_rating":"10"}' \
         'https://28na0ur1e3.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
 
-## Future Roadmap Example #1
-
-[![Drag Racing](assets/serverless.png)](https://www.puresec.io/blog/aws-security-best-practices-for-api-gateway)
-  
 ## Future Considerations: Security and Enhancements
  - Deploying Using CI - Self Hosted(Bamboo,GoCD, ConcourseCI) vs Service(Shippable, Buildkite)
  - Cost Considerations: https://alestic.com/2016/12/aws-invoice-example/
@@ -97,3 +93,7 @@ The Cloudformation stack mainly deploys the following AWS resources:
     - Lambda Authorizer Functions
  - Blue Green Deployments with api safety: v1->v2->v3...
  - Better Tagging of Resources
+ 
+## Future Roadmap Example #1
+
+[![Drag Racing](assets/serverless.png)](https://www.puresec.io/blog/aws-security-best-practices-for-api-gateway)
