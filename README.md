@@ -50,24 +50,32 @@ The Cloudformation stack mainly deploys the following AWS resources:
 
 ## Implementation : Using Ansible + CloudFormation + API Gateway + DynamoDB + SNS
 
-### Installing Dependencies for using Python Virtual Env and Ansible
- - Install Homebrew using https://brew.sh/
- - Install AWS CLI : `brew install awscli`
- - Install Ansible and Dependencies: `brew install ansible`
- - Install Boto3: `pip3 install boto3`
- - Set AWS Credentials: `source <creds-file>`
- - If needed update Ansible inventory /inventory/development/group_vars/all
-
-### Deploying Application on AWS 
- - Deploy DB using Ansible: 
-   $ ``ansible-playbook deploy-db.yml -i inventory/development/ --extra-vars "database_name=companyx" -e "ansible_python_interpreter=`which python3`"``
- - Deploy Application using Ansible: 
-   $ ``ansible-playbook deploy-api.yml -i inventory/development/ --extra-vars "stage_name=v1 database_name=companyx" -e "ansible_python_interpreter=`which python3`"``
-
+### Execution & Deployment: 
+ * Install Docker CE: https://download.docker.com/
+ * Update Ansible inventory at: `/inventory/development`
+ * Set AWS Credentials: `source <creds-file>`
+ * To Deploy Run: `./deploy.sh`
+    
+    Contains the following commands:
+    ```
+    docker-compose build
+    docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=companyx state=present"
+    docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=companyx state=present"
+    docker-compose down
+    ```
+ * To Destroy Run: `./destroy.sh`
+    
+    Contains the following commands:
+    ```
+    docker-compose build
+    docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=companyx state=absent"
+    docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=companyx state=absent"
+    docker-compose down
+    ```
 ### Testing Post Request
  - `curl -i --header "Content-Type: application/json" \
         --request POST --data '{"team_name":"companyx","team_country":"au","team_desc":"team companyx is the best","team_rating":"10"}' \
-        'https://mu0cvz09o6.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
+        'https://28na0ur1e3.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
 
 ## Future Roadmap Example #1
 
@@ -76,7 +84,7 @@ The Cloudformation stack mainly deploys the following AWS resources:
 ## Future Considerations: Security and Enhancements
  - Deploying Using CI - Self Hosted(Bamboo,GoCD, ConcourseCI) vs Service(Shippable, Buildkite)
  - Cost Considerations: https://alestic.com/2016/12/aws-invoice-example/
- - Need to consider using containers for deployment to avoid dependency and version issues
+ - Need to consider using containers for deployment to avoid dependency and version issues - DONE
  - Authentication using Cognito(Auth0? cost vs value) depending on use case
  - Consider moving code to separate directory and improving(for running Lint, TDD etc) and using `aws cloudformation package` before deploy
  - Create DNS Endpoint and Server with a SSL Cert, Maybe use Cloudfront?

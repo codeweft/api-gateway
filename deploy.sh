@@ -4,5 +4,7 @@ set -Eeuo pipefail #https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_p
 
 trap "echo ERR trap fired!" ERR
 
-ansible-playbook deploy-db.yml -i inventory/development/ --extra-vars "database_name=companyx" -e "ansible_python_interpreter=`which python3`"
-ansible-playbook deploy-api.yml -i inventory/development/ --extra-vars "stage_name=v1 database_name=companyx" -e "ansible_python_interpreter=`which python3`"
+docker-compose build
+docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=companyx state=present"
+docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=companyx state=present"
+docker-compose down

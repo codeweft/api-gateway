@@ -4,7 +4,7 @@
   - name: Deploy DB - DynamoDB, Lambda, SNS
     cloudformation:
       stack_name: "{{project}}-{{env}}-db"
-      state: present
+      state: "{{state}}"
       region: "{{aws_region}}"
       disable_rollback: true
       template: "cloudformation/dynamodb.yml"

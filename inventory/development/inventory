@@ -4,6 +4,7 @@ db
 [db:vars]
 database_name=companyx
 email_address=harshad2019@wankhede.org
+state=present
 
 [api]
 api
@@ -12,3 +13,4 @@ api
 application_name=companyx
 database_name=companyx
 stage_name=v1
+state=present
