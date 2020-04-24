@@ -2,7 +2,7 @@ version: '2'
 services:
   deploy:
     build: ./
-    working_dir: /deployer
+    working_dir: /deployer/ansible
     volumes:
       - ".:/deployer"
     environment:
