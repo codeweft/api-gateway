@@ -1,4 +1,4 @@
-# API Gateway Challenge from CompanyX
+# API Gateway Challenge from apigwx
 
 ## Background
 A cloud engineer working for Company X created a Cloudformation template to deploy a serverless API
@@ -59,8 +59,8 @@ The Cloudformation stack mainly deploys the following AWS resources:
     Contains the following commands:
     ```
     docker-compose build
-    docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=companyx state=present"
-    docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=companyx state=present"
+    docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=apigwx state=present"
+    docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=apigwx state=present"
     docker-compose down
     ```
  * To Destroy Run: `./destroy.sh`
@@ -68,14 +68,14 @@ The Cloudformation stack mainly deploys the following AWS resources:
     Contains the following commands:
     ```
     docker-compose build
-    docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=companyx state=absent"
-    docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=companyx state=absent"
+    docker-compose run --rm deploy ansible-playbook deploy-api.yml -i inventory/development/ --e "stage_name=v1 database_name=apigwx state=absent"
+    docker-compose run --rm deploy ansible-playbook deploy-db.yml -i inventory/development/ --e "database_name=apigwx state=absent"
     docker-compose down
     ```
 ### Testing Post Request
  - `curl -i --header "Content-Type: application/json" \
-        --request POST --data '{"team_name":"companyx","team_country":"au","team_desc":"team companyx is the best","team_rating":"10"}' \
-        'https://28na0ur1e3.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
+        --request POST --data '{"team_name":"apigwx","team_country":"au","team_desc":"team apigwx is the best","team_rating":"10"}' \
+        'https://n24n4y9vgk.execute-api.ap-southeast-2.amazonaws.com/v1/add_new'`
 
 ## Future Considerations: Security and Enhancements
  - Deploying Using CI - Self Hosted(Bamboo,GoCD, ConcourseCI) vs Service(Shippable, Buildkite)

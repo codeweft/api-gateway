@@ -2,7 +2,7 @@
 db
 
 [db:vars]
-database_name=companyx
+database_name=apigwx
 email_address=harshad2019@wankhede.org
 state=present
 
@@ -10,7 +10,7 @@ state=present
 api
 
 [api:vars]
-application_name=companyx
-database_name=companyx
+application_name=apigwx
+database_name=apigwx
 stage_name=v1
 state=present
